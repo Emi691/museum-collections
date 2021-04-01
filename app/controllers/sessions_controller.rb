@@ -5,7 +5,6 @@ class SessionsController < ApplicationController
 
     def create
         @user = User.find_by(username: session_params[:username])
-        #binding.pry
         if @user && @user.authenticate(session_params[:password])
             session[:user_id] = @user.id
             redirect_to pieces_path
@@ -16,6 +15,7 @@ class SessionsController < ApplicationController
     end
 
     def logout
+        session.clear
     end
 
     private
