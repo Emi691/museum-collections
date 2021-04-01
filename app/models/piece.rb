@@ -7,5 +7,5 @@ class Piece < ApplicationRecord
     validates_presence_of :title, :artist, :description
     validates_uniqueness_of :title, :description
 
-    accepts_nested_attributes :treatment
+    accepts_nested_attributes_for :treatment
 end
