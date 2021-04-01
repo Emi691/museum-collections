@@ -1,10 +1,9 @@
-<h1>Log In<h1>
-
-<%= form_for @user, url: signup_path do |f| %>
+<h1>Log In</h1>
+<%= form_for @user, url: login_path do |f| %>
     <%= f.label 'username' %>
     <%= f.text_field 'username' %><br>
     <%= f.label 'password' %>
     <%= f.password_field 'password' %><br>
     <br>
-    <%= f.submit 'Sign Up' %>
+    <%= f.submit 'Log In' %>
 <% end %>
