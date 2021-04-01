@@ -7,5 +7,5 @@ class User < ApplicationRecord
     validates_presence_of :username, :email
     validates_uniqueness_of :username, :email
 
-    accepts_nested_attributes_for :museum
+    accepts_nested_attributes_for :museums
 end
