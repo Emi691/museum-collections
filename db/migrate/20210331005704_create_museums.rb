@@ -3,7 +3,6 @@ class CreateMuseums < ActiveRecord::Migration[6.1]
     create_table :museums do |t|
       t.string :name
       t.string :location
-      t.string :type
 
       t.timestamps
     end

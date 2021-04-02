@@ -1,5 +1,6 @@
 <h1>Gallery</h1>
 <p>narrow by: artist, museum, name </p>
 <% @pieces.each do |p| %>
-<%= p.name %>
+<h3><%= link_to p.title, piece_path(p) %></h3><%= p.artist %><br>
+<br>
 <% end %>
