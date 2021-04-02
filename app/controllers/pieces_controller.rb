@@ -8,11 +8,6 @@ class PiecesController < ApplicationController
         @piece = Piece.find_by(id: params[:id])
     end
 
-    def treatements
-        @piece = Piece.find_by(id: params[:id])
-        @treatment = Treatment.find_by(id: params[:treatment][:id])
-    end
-
     def new
     end
 
