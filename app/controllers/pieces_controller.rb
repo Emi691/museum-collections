@@ -9,9 +9,16 @@ class PiecesController < ApplicationController
     end
 
     def new
+        @piece = Piece.new
     end
 
     def create
+        @piece = Piece.new(piece_params)
+        if @piece.save
+            redirect_to pieces_path
+        else
+            redirect_to '/'
+        end
     end
 
     def edit
