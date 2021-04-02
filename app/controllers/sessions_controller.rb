@@ -4,20 +4,22 @@ class SessionsController < ApplicationController
     end
 
     def create
-        binding.pry
+        #binding.pry
         if google_auth
-            @user = user.find_or_create_by(username: google_auth[:name], email: google_auth[:email])
-            session[:user_id] = @user.id
-                redirect_to pieces_path
+            @user = User.find_or_create_by(username: google_auth[:name], email: google_auth[:email])do
+            #binding.pry
+            @user.password= SecureRandom.base36
+            end
         else
             @user = User.find_by(username: session_params[:username])
-            if @user && @user.authenticate(session_params[:password])
-                session[:user_id] = @user.id
-                redirect_to pieces_path
-            else
-                @user = User.new(session_params)
-                render :new
-            end
+        end
+        @password = @user.password
+        if @user && @user.authenticate(@password)
+            session[:user_id] = @user.id
+            redirect_to pieces_path
+        else
+            @user = User.new(session_params)
+            render :new
         end
     end
 
@@ -28,10 +30,10 @@ class SessionsController < ApplicationController
     private
     
     def google_auth
-        request.env['omniauth.auth']
+        request.env['omniauth.auth'][:info]
     end
 
     def session_params
-        params.require(:user).permit(:username, :password)
+        params.require(:user).permit(:username, :email, :password)
     end
 end

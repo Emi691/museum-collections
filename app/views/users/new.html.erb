@@ -7,6 +7,7 @@
     <%= f.text_field 'email' %><br>
     <%= f.label 'password' %>
     <%= f.password_field 'password' %><br>
+    <%= f.collection_select :id, Museum.all, :id, :name %>
     <br>
     <%= f.submit 'Sign Up' %>
 <% end %>
