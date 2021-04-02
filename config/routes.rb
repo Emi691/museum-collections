@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
   resources :pieces do
-    resources :treatments, only: [:show, :index]
+    resources :treatments, only: [:show, :index, :new]
   end
-  
+
   get "/", to: "application#home"
 
   get "/signup", to: "users#new"
