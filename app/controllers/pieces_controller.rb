@@ -5,6 +5,7 @@ class PiecesController < ApplicationController
     end
 
     def show 
+        @piece = Piece.find_by(id: params[:id])
     end
 
     def new
@@ -20,5 +21,11 @@ class PiecesController < ApplicationController
     end
 
     def delete
+    end
+
+    private
+
+    def piece_params
+        params.require(:piece).permit(:title, :artist, :description, :medium, :dimensions, :weight, :location, :provenance, :appraised_value, :notes, :treatment[:id], :treatment[:decription, :date_time])
     end
 end
