@@ -4,17 +4,22 @@ class SessionsController < ApplicationController
     end
 
     def create
-        #binding.pry
-        if google_auth
-            @user = User.find_or_create_by(username: google_auth[:name], email: google_auth[:email])do
-            #binding.pry
-            @user.password= SecureRandom.base36
-            end
+        @user = User.find_by(username: session_params[:username])
+        if @user && @user.authenticate(session_params[:password])
+            session[:user_id] = @user.id
+            redirect_to pieces_path
         else
-            @user = User.find_by(username: session_params[:username])
+            @user = User.new(session_params)
+            render :new
         end
-        @password = @user.password
-        if @user && @user.authenticate(@password)
+    end
+
+    def create_from_google
+        @user = User.find_or_create_by(username: google_auth[:name], email: google_auth[:email])
+        if !@user.password
+        @user.password = SecureRandom.base36
+        end
+        if @user.save && @user.authenticate(@user.password)
             session[:user_id] = @user.id
             redirect_to pieces_path
         else
