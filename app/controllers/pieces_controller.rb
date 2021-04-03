@@ -1,4 +1,5 @@
 class PiecesController < ApplicationController
+   # before_action redirect_if_not_logged_in only (:create, :update, :delete)
 
     def index
         @pieces = Piece.all
@@ -13,11 +14,15 @@ class PiecesController < ApplicationController
     end
 
     def create
+        @user_id = current_user.id
+        @museum_id = current_user.museums.first.id 
         @piece = Piece.new(piece_params)
+        @piece.user_id = @user_id
+        @piece.museum_id = @museum_id
         if @piece.save
-            redirect_to pieces_path
+            redirect_to piece_path(@piece)
         else
-            redirect_to '/'
+            render :new
         end
     end
 
@@ -34,12 +39,12 @@ class PiecesController < ApplicationController
     def delete
         @piece = Piece.find_by(id: params[:id])
         @piece.delete
-        redirect_to piece_path(@piece)
+        redirect_to pieces_path
     end
 
     private
 
     def piece_params
-        params.require(:piece).permit(:title, :artist, :description, :medium, :dimensions, :weight, :location, :provenance, :appraised_value, :notes, :treatment[:id], :treatment[:decription, :date_time])
+        params.require(:piece).permit(:user_id, :museum_id, :title, :artist, :description, :medium, :dimensions, :weight, :location, :provenance, :appraised_value, :notes, treatments_attributes: [:description, :date_time])
     end
 end
