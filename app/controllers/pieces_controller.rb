@@ -3,7 +3,7 @@ class PiecesController < ApplicationController
 
     def index
         if params[:user_id]
-            @user = User.find_by(id: params[:id])
+            @user = User.find_by(id: params[:user_id])
             @pieces = @user.pieces
         else
             @pieces = Piece.all
