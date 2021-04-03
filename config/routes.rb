@@ -3,6 +3,10 @@ Rails.application.routes.draw do
     resources :treatments, only: [:show, :index, :new]
   end
 
+  resources :user, only: [:show] do
+    resources :pieces, only [:index, :show]
+  end
+
   get "/", to: "application#home"
 
   get "/signup", to: "users#new"

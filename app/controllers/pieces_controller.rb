@@ -2,7 +2,12 @@ class PiecesController < ApplicationController
    # before_action redirect_if_not_logged_in only (:create, :update, :delete)
 
     def index
-        @pieces = Piece.all
+        if params[:user_id]
+            @user = User.find_by(id: params[:id])
+            @pieces = @user.pieces
+        else
+            @pieces = Piece.all
+        end
     end
 
     def show 
@@ -36,7 +41,7 @@ class PiecesController < ApplicationController
         redirect_to piece_path(@piece)
     end
 
-    def delete
+    def destroy
         @piece = Piece.find_by(id: params[:id])
         @piece.delete
         redirect_to pieces_path

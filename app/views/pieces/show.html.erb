@@ -1,4 +1,5 @@
 <h1><%= @piece.title %></h1>
+<%= button_to "Edit", edit_piece_path(@piece) %><%= button_to "Delete", piece_path(@piece), :method => :delete %>
 <p> by: <%= @piece.artist %></p>
 <p> description: <%= @piece.description %></p>
 <p> medium: <%= @piece.medium %></p>
@@ -9,7 +10,7 @@
 <p> appraised value: <%= @piece.appraised_value %></p>
 <p> notes: <%= @piece.notes %></p>
 
-<%= link_to "treatments", "/pieces/#{@piece.id}/treatments" %>
+<%= button_to "treatments", "/pieces/#{@piece.id}/treatments" %>
 
 
 
