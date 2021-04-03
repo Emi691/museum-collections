@@ -22,12 +22,19 @@ class PiecesController < ApplicationController
     end
 
     def edit
+        @piece = Piece.find_by(id: params[:id])
     end
 
     def update
+        @piece = Piece.find_by(id: params[:id])
+        @piece.update(piece_params)
+        redirect_to piece_path(@piece)
     end
 
     def delete
+        @piece = Piece.find_by(id: params[:id])
+        @piece.delete
+        redirect_to piece_path(@piece)
     end
 
     private
