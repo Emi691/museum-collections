@@ -1,6 +1,15 @@
 <h1>Add a Treatment </h1>
 
+<% if !@treatement.errors.empty %>
+<ul>
+    <% @treatment.errors.full_messages.each do |m| %>
+    <li><%= m %></li>
+    <% end %>
+<ul>
+<% end %>
+
 <%= form_for @treatment do |f| %>
+    <%= f.hidden_field :piece_id %>
     <%= f.label 'date added' %>
     <%= f.date_field 'date_time' %>
     <%= f.label 'description' %>
