@@ -27,7 +27,6 @@ class PiecesController < ApplicationController
         if @piece.save
             redirect_to piece_path(@piece)
         else
-            binding.pry
             render :new
         end
     end

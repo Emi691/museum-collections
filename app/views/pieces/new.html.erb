@@ -1,2 +1,8 @@
 <h1>Add a Piece</h1>
+<% if !@piece.errors.empty? %>
+    <% @piece.errors.full_messages.each do |message|%>
+        <%= message %><br>
+    <% end %>
+<% end %>
+<br>
 <%= render 'form' %>

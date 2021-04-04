@@ -1,12 +1,11 @@
 <h1>Add a Treatment </h1>
 
-<% if !@treatement.errors.empty %>
-<ul>
-    <% @treatment.errors.full_messages.each do |m| %>
-    <li><%= m %></li>
+<% if !@treatment.errors.empty? %>
+    <% @treatment.errors.full_messages.each do |message|%>
+        <%= message %><br>
     <% end %>
-<ul>
 <% end %>
+<br>
 
 <%= form_for @treatment do |f| %>
     <%= f.hidden_field :piece_id %>
