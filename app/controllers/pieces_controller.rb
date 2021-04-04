@@ -16,17 +16,21 @@ class PiecesController < ApplicationController
 
     def new
         @piece = Piece.new
+        @pmuseum = Museum.new
     end
 
     def create
-        @user_id = current_user.id
-        @museum_id = current_user.museums.first.id 
         @piece = Piece.new(piece_params)
-        @piece.user_id = @user_id
-        @piece.museum_id = @museum_id
+        user_id = current_user.id
+        @piece.user_id = user_id
+        if params[:piece][:museum]
+            museum = Museum.create(params[:piece][:museum])
+            @piece.museum_id = museum.id
+        end
         if @piece.save
             redirect_to piece_path(@piece)
         else
+            binding.pry
             render :new
         end
     end
@@ -37,8 +41,11 @@ class PiecesController < ApplicationController
 
     def update
         @piece = Piece.find_by(id: params[:id])
-        @piece.update(piece_params)
+        if @piece.update(piece_params)
         redirect_to piece_path(@piece)
+        else
+            render :edit
+        end
     end
 
     def destroy
@@ -50,6 +57,6 @@ class PiecesController < ApplicationController
     private
 
     def piece_params
-        params.require(:piece).permit(:user_id, :museum_id, :title, :artist, :description, :medium, :dimensions, :weight, :location, :provenance, :appraised_value, :notes, treatments_attributes: [:description, :date_time])
+        params.require(:piece).permit(:user_id, :museum_id, :title, :artist, :description, :medium, :dimensions, :weight, :location, :provenance, :appraised_value, :notes)
     end
 end

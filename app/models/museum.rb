@@ -1,6 +1,5 @@
 class Museum < ApplicationRecord
-    has_many :pieces
-    has_many :users, through: :pieces
+    belongs_to :user
 
     validates_presence_of :name, :location
     validates_uniqueness_of :name

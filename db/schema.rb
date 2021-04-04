@@ -24,13 +24,13 @@ ActiveRecord::Schema.define(version: 2021_03_31_011038) do
   create_table "museums", force: :cascade do |t|
     t.string "name"
     t.string "location"
+    t.integer "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "pieces", force: :cascade do |t|
     t.integer "user_id"
-    t.integer "museum_id"
     t.string "title"
     t.string "artist"
     t.text "description"

@@ -7,7 +7,16 @@
     <%= f.text_field 'email' %><br>
     <%= f.label 'password' %>
     <%= f.password_field 'password' %><br>
-    <%= f.collection_select :id, Museum.all, :id, :name %>
+    <%= f.label 'Museum:'%><br>
+    <%= f.collection_check_boxes :museum_ids, Museum.all, :id, :name %>
+    <br>
+    <%= f.label 'other:'%>
+    <%= f.fields_for :museums, @user.museums.build do |museums_fields| %>
+        <%= museums_fields.label 'name' %>
+        <%= museums_fields.text_field 'name' %>
+        <%= museums_fields.label 'location' %>
+        <%= museums_fields.text_field 'location' %>
+    <% end %>
     <br>
     <%= f.submit 'Sign Up' %>
 <% end %>

@@ -1,6 +1,5 @@
 class Piece < ApplicationRecord
     belongs_to :user
-    belongs_to :museum
     has_many :conditions
     has_many :treatments, through: :conditions
 
@@ -8,4 +7,5 @@ class Piece < ApplicationRecord
     validates_uniqueness_of :title, :description
 
     accepts_nested_attributes_for :treatments
+    accepts_nested_attributes_for :conditions
 end
