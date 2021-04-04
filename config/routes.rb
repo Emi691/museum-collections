@@ -6,6 +6,8 @@ Rails.application.routes.draw do
   resources :user, only: [:show] do
     resources :pieces, only: [:index, :show]
   end
+  
+ resources :treatments, only: [:show, :index, :new, :create]
 
   get "/", to: "application#home"
 

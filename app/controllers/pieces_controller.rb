@@ -24,10 +24,6 @@ class PiecesController < ApplicationController
         @piece = Piece.new(piece_params)
         user_id = current_user.id
         @piece.user_id = user_id
-        if params[:piece][:museum]
-            museum = Museum.create(params[:piece][:museum])
-            @piece.museum_id = museum.id
-        end
         if @piece.save
             redirect_to piece_path(@piece)
         else

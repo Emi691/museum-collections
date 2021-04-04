@@ -1,9 +1,9 @@
 <h1>Add a Treatment </h1>
 
 <%= form_for @treatment do |f| %>
-<%= f.label 'date added' %>
-<%= f.text_area 'date_time'%>
-<%= f.label 'description' %>
-<%= f.text_area 'description'%>
-<%= f.submit %>
+    <%= f.label 'date added' %>
+    <%= f.date_field 'date_time' %>
+    <%= f.label 'description' %>
+    <%= f.text_area 'description' %>
+    <%= f.submit %>
 <% end %>

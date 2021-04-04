@@ -13,9 +13,22 @@ class TreatmentsController < ApplicationController
     end
 
     def create
+        #binding.pry
+        @treatement = Treatment.create(treatement_params)
+        if @treatement.save
+            redirect_to treatment_path(@treatement)
+        else
+            render :new
+        end
     end
     
     def show
-        @treatement = Treatment.find_by(id: params[:id])
+        @treatment = Treatment.find_by(id: params[:id])
+    end
+
+    private
+
+    def treatement_params
+        params.require(:treatment).permit(:description, :date_time, :piece_id)
     end
 end
