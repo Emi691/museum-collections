@@ -8,10 +8,19 @@
 <br>
 
 <%= form_for @treatment do |f| %>
-    <%= f.hidden_field :piece_id %>
     <%= f.label 'date added' %>
-    <%= f.date_field 'date_time' %>
+    <%= f.date_field 'date_time' %><br>
     <%= f.label 'description' %>
     <%= f.text_area 'description' %>
+    <br>
+    <h4>Condition at time of Treatment:</h4>
+    <%= f.fields_for :conditions do |conditions_fields|%>
+        <%= conditions_fields.hidden_field 'piece_id' %>
+        <%= conditions_fields.label 'date condition recorded:' %>
+        <%= conditions_fields.date_field 'date_time' %><br> 
+        <%= conditions_fields.label 'description' %>
+        <%= conditions_fields.text_area 'description' %><br>
+        
+    <% end %>
     <%= f.submit %>
 <% end %>

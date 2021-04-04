@@ -10,13 +10,14 @@ class TreatmentsController < ApplicationController
 
     def new
         @treatment = Treatment.new
+        @treatment.conditions.build(piece_id: params[:piece_id])
     end
 
     def create
-        #binding.pry
-        @treatement = Treatment.create(treatement_params)
-        if @treatement.save
-            redirect_to treatment_path(@treatement)
+        binding.pry
+        @treatment = Treatment.create(treatment_params)  
+        if @treatment.save
+            redirect_to treatment_path(@treatment)
         else
             render :new
         end
@@ -28,7 +29,7 @@ class TreatmentsController < ApplicationController
 
     private
 
-    def treatement_params
-        params.require(:treatment).permit(:description, :date_time, :piece_id)
+    def treatment_params
+        params.require(:treatment).permit(:description, :date_time, conditions_attributes: [:treatment_id, :piece_id, :description, :date_time])
     end
 end
