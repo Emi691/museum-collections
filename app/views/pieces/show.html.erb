@@ -1,5 +1,7 @@
 <h1><%= @piece.title %></h1>
-<%= button_to "Edit", edit_piece_path(@piece) %><%= button_to "Delete", piece_path(@piece), :method => :delete %>
+<% if @piece.user == @user %>
+<%= link_to "Edit", edit_piece_path(@piece) %><%= button_to "Delete", piece_path(@piece), :method => :delete %>
+<% end %>
 <p> by: <%= @piece.artist %></p>
 <p> description: <%= @piece.description %></p>
 <p> medium: <%= @piece.medium %></p>

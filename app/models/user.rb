@@ -7,8 +7,6 @@ class User < ApplicationRecord
     validates_presence_of :username, :email
     validates_uniqueness_of :username, :email
 
-    #accepts_nested_attributes_for :museums
-
     def museums_attributes=(museums_attributes)
         museums_attributes.values.each do |museum_attribute|
             museum = Museum.find_or_create_by(museum_attribute)
