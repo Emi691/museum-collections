@@ -1,6 +1,13 @@
 <h1>Gallery</h1>
+<div>
+    <h4>Filter posts:</h4>
+    <%= form_tag("/pieces", method: "get") do %>
+        <%= select_tag "artist", options_for_select(@artists), include_blank: true %>
+        <%= select_tag "alphabetize", options_for_select(["A-Z", "Z-A"]), include_blank: true %>
+        <%= submit_tag "Filter" %>
+    <% end %>
+</div>
 <%= link_to 'Add a Piece', new_piece_path%>
-<p>narrow by: artist, museum, name </p>
 <% @pieces.each do |p| %>
 <h3><%= link_to p.title, piece_path(p) %></h3><%= p.artist %><br>
 <br>

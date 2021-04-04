@@ -6,6 +6,20 @@ class Piece < ApplicationRecord
     validates_presence_of :title, :artist, :description
     validates_uniqueness_of :title, :description
 
-    accepts_nested_attributes_for :treatments
-    accepts_nested_attributes_for :conditions
+    def self.all_artists
+        all.map{|piece| piece.artist}.uniq
+    end
+
+    def self.by_artist(artist)
+        where(artist: artist)
+    end
+
+    def self.alphabetical_by_title
+        all.order(title: :asc)
+    end
+
+    def self.reverse_alphabetical_by_title
+        all.order(title: :desc)
+    end
+
 end

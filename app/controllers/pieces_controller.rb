@@ -2,9 +2,19 @@ class PiecesController < ApplicationController
    # before_action redirect_if_not_logged_in only (:create, :update, :delete)
 
     def index
+        @artists = Piece.all_artists
         if params[:user_id]
             @user = User.find_by(id: params[:user_id])
-            @pieces = @user.pieces
+            @pieces = @user.pieces   
+        elsif !params[:artist].blank?
+            @pieces = Piece.by_artist(params[:artist])
+        elsif !params[:alphabetize].blank?
+
+            if params[:alphabetize] == "A-Z"
+            @pieces = Piece.alphabetical_by_title
+            else
+                @pieces = Piece.reverse_alphabetical_by_title
+            end
         else
             @pieces = Piece.all
         end
