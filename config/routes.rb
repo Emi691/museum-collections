@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   resources :pieces do
-    resources :treatments, only: [:show, :index, :new]
+    resources :treatments, only: [:show, :new]
   end
 
   resources :user, only: [:show] do
