@@ -1,13 +1,13 @@
 <h1>Treatment:</h1>
 <p> Date of Treatment:
-<%= @treatment.date_time %></p><br>
+<%= @treatment.parse_time %></p><br>
 <p> Description:
 <%= @treatment.description %></p><br>
 <h3>Condition at time of treatment: </h3>
 <% if !@treatment.conditions.empty?%>
     <% @treatment.conditions.each do |c| %>
         <p> Date condition observed:
-        <%= c.date_time %></p>
+        <%= c.parse_time %></p>
         <p> Description:
         <%= c.description %></p>
     <% end %>

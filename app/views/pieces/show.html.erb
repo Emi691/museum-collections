@@ -19,13 +19,13 @@
     <% @piece.treatments.each_with_index do |t, index| %>
         <%= link_to "Treatment #{index +1}", "/pieces/#{@piece.id}/treatments/#{t.id}"  %> 
         <p>Date of Treatment:
-        <%= t.date_time %></p>
+        <%= t.parse_time %></p>
         <p>Description:
         <%= t.description %></p>
         <p>Condition at time of treatment:</p>
             <% t.conditions.each do |c| %>
                 <p>Date condition observed:
-                <%= c.date_time %></p>
+                <%= c.parse_time %></p>
                 <p>Description:
                 <%= c.description %></p>
             <% end %>
