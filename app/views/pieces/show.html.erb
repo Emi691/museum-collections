@@ -12,7 +12,27 @@
 <p> appraised value: <%= @piece.appraised_value %></p>
 <p> notes: <%= @piece.notes %></p>
 
-<%= button_to "treatments", "/pieces/#{@piece.id}/treatments" %>
+<h4>Treatments</h4>
+<%= button_to "add a treatment", "/pieces/#{@piece.id}/treatments/new" %>
+
+<% if !@piece.treatments.empty? %>
+    <% @piece.treatments.each_with_index do |t, index| %>
+        <h4><%= index +1 %>.</h4>
+        <p>Date of Treatment:
+        <%= t.date_time %></p>
+        <p>Description:
+        <%= t.description %></p>
+        <p>Condition at time of treatment:</p>
+            <% t.conditions.each do |c| %>
+                <p>Date condition observed:
+                <%= c.date_time %></p>
+                <p>Description:
+                <%= c.description %></p>
+            <% end %>
+    <% end %>
+<% else%>
+<p> This piece has no treatments: </p>
+<% end %>
 
 
 
