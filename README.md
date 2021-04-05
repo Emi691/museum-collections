@@ -1,24 +1,72 @@
-# README
+# Collections Keeper
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Collections keeper is a simple Rails web-app which allows users who are signed up to organize a collection of museum pieces and keep track of conservation and treatments those pieces are undergoing.
 
-Things you may want to cover:
 
-* Ruby version
+### Summary
 
-* System dependencies
+Getting Started
 
-* Configuration
+Built With
 
-* Database creation
+Contributing
 
-* Database initialization
+Versioning
 
-* How to run the test suite
+Authors
 
-* Services (job queues, cache servers, search engines, etc.)
+License
 
-* Deployment instructions
+Acknowledgments
 
-* ...
+
+### Getting Started
+
+The instructions bellow will guide you through getting a copy of this application up and running on your local machine for testing or development.
+
+#### Installing
+
+Clone the file for this project onto your device using:
+```
+git clone "code to clone here"
+```
+
+
+Run 
+```
+bundle install
+``` 
+to ensure you have all necessary gems installed and running properly.
+
+#### Starting the App
+In the directory for the project use the command bellow to open a server on your device:
+```
+rails s
+```
+This will return a string of text that ends with "listening at [some number]"
+remember this number, as you will need it to open the site page in your  browser.
+
+Then navigate to www.localhost:{the number where the server is listening}/ in you browser
+This should open the home page. 
+
+### Built With
+
+Contributor Covenant - Used for the Code of Conduct
+Creative Commons - Used to choose the license
+
+
+### Contributing
+Please read Contributing.md for details on our code of conduct, and the process for submitting pull requests to us.
+
+
+### Author
+Emiko Nagasawa-Pijoan
+
+
+### License
+This project is licensed under the CC0 1.0 Universal Creative Commons License - see the licence.md file for details
+
+
+### Acknowledgments
+Corneal gem for helping with file tree set up
+Lawrence Hall of Science for inspring the idea of a museum collection app.
