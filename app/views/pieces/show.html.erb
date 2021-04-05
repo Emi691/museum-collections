@@ -12,12 +12,12 @@
 <p> appraised value: <%= @piece.appraised_value %></p>
 <p> notes: <%= @piece.notes %></p>
 
-<h4>Treatments</h4>
-<%= button_to "add a treatment", "/pieces/#{@piece.id}/treatments/new" %>
-
+<h3>Treatments</h3>
+<%= link_to "Add a Treatment!", "/pieces/#{@piece.id}/treatments/new" %><br>
+<br>
 <% if !@piece.treatments.empty? %>
     <% @piece.treatments.each_with_index do |t, index| %>
-        <h4><%= index +1 %>.</h4>
+        <%= link_to "Treatment #{index +1}", "/pieces/#{@piece.id}/treatments/#{t.id}"  %> 
         <p>Date of Treatment:
         <%= t.date_time %></p>
         <p>Description:
