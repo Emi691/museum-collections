@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   end
 
   resources :user, only: [:show] do
-    resources :pieces, only: [:index, :show]
+    resources :pieces, only: [:index]
   end
   
  resources :treatments, only: [:show, :index, :new, :create]
