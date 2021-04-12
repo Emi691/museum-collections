@@ -5,4 +5,7 @@
     <% end %>
 <% end %>
 <br>
-<%= render 'form' %>
+<%= form_for @piece do |f| %>
+<%= render 'form', f: f %>
+<%= f.submit 'Edit Piece' %>
+<% end %>
