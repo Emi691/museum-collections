@@ -13,7 +13,9 @@
 <p> notes: <%= @piece.notes %></p>
 
 <h3>Treatments</h3>
+<% if @piece.user == @user %>
 <%= link_to "Add a Treatment!", "/pieces/#{@piece.id}/treatments/new" %><br>
+<% end %>
 <br>
 <% if !@piece.treatments.empty? %>
     <% @piece.treatments.each_with_index do |t, index| %>

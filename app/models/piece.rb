@@ -10,16 +10,9 @@ class Piece < ApplicationRecord
         all.map{|piece| piece.artist}.uniq
     end
 
-    def self.by_artist(artist)
-        where(artist: artist)
-    end
+    scope :by_artist, -> (artist) { where("artist= ?", artist) }
 
-    def self.alphabetical_by_title
-        all.order(title: :asc)
-    end
+    scope :alphabetical_by_title, -> { order(title: :asc) }
 
-    def self.reverse_alphabetical_by_title
-        all.order(title: :desc)
-    end
-
+    scope :reverse_alphabetical_by_title, -> { order(title: :desc) }
 end

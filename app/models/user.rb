@@ -13,4 +13,7 @@ class User < ApplicationRecord
             self.museums << museum
         end
     end
+
+    scope :most_pieces, -> { joins(:pieces).group('users.id').order('count(pieces.id) desc').limit(1) }
+
 end

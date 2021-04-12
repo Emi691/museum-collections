@@ -1,5 +1,5 @@
 class PiecesController < ApplicationController
-   # before_action redirect_if_not_logged_in only (:create, :update, :delete)
+   before_action :redirect_if_not_logged_in
 
     def index
         @artists = Piece.all_artists

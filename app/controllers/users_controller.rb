@@ -15,6 +15,10 @@ class UsersController < ApplicationController
         end
     end
 
+    def show
+        @user = User.most_pieces.first
+    end
+
     private
 
     def user_params

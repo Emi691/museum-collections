@@ -1,4 +1,5 @@
 class TreatmentsController < ApplicationController
+    before_action :redirect_if_not_logged_in
 
     def new
         @treatment = Treatment.new
@@ -6,7 +7,6 @@ class TreatmentsController < ApplicationController
     end
 
     def create
-        binding.pry
         @treatment = Treatment.create(treatment_params)  
         if @treatment.save
             redirect_to treatment_path(@treatment)
