@@ -21,8 +21,13 @@ class PiecesController < ApplicationController
     end
 
     def show 
-        @piece = Piece.find_by(id: params[:id])
-        @user = current_user
+        if @piece = Piece.find_by(id: params[:id])
+            @user = current_user
+            render :show
+        else
+            flash[:message] = "The piece you requested could not be found"
+            redirect_to pieces_path
+        end
     end
 
     def new
